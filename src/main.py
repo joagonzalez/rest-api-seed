@@ -12,6 +12,6 @@ if __name__ == '__main__':
 if __name__ != '__main__':
     """
     if running app from Gunicorn WSGI production server
-    ../src$ gunicorn wsgi:app --bind 0.0.0.0:5000 -w 4
+    ../src$ gunicorn main:app --bind 0.0.0.0:5000 -w 4
     """
     app = app.app
