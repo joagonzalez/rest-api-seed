@@ -12,8 +12,9 @@ class LoggerService:
         via logging.json file parameters
         """
         # loggerPath = envvar is not None else path
-        path = '../../logs/logging.json'
+        path = '../logs/logging.json'
         value = os.getenv(envvar, None)
+        _ok = True
         if value:
             path = value
         if os.path.exists(path):
@@ -22,9 +23,11 @@ class LoggerService:
             logging.config.dictConfig(config_json)
         else:
             logging.basicConfig(level=logging.INFO)
+            _ok = False
 
         self.logger = logging.getLogger(config['FLASK']['LOGGER'])
-
+        if not _ok:
+            self.logger.info('no arch log')
     def error(self, message):
         self.logger.error(message)
 
